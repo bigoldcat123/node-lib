@@ -1,8 +1,8 @@
 {
   "name": "czh-node-liv",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
-  "main": "index.js",
+  "main": "temp/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,5 +15,12 @@
   "bugs": {
     "url": "https://github.com/bigoldcat123/node-lib/issues"
   },
-  "homepage": "https://github.com/bigoldcat123/node-lib#readme"
+  "homepage": "https://github.com/bigoldcat123/node-lib#readme",
+  "devDependencies": {
+    "@rollup/plugin-typescript": "^11.1.6",
+    "rollup": "^4.17.2",
+    "rollup-plugin-typescript2": "^0.36.0",
+    "tslib": "^2.6.2",
+    "typescript": "^5.4.5"
+  }
 }
