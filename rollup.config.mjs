@@ -3,13 +3,16 @@ import typescript from 'rollup-plugin-typescript2';
 import path from 'node:path'
 import {defineConfig} from 'rollup'
 import fs from 'node:fs'
+import json from '@rollup/plugin-json';
 export default defineConfig({
 	input:'src/index.ts',
 	output: {
 		format:'cjs',
 		dir:'dist'
 	},
-	plugins:[typescript(),tsjson()
+	plugins:[json(),typescript({
+		// tsconfig:'tsconfig.json'
+	}),
 	]
 })
 
