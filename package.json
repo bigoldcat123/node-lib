@@ -1,6 +1,6 @@
 {
   "name": "czh-node-liv",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/src/index.d.ts",
@@ -28,8 +28,5 @@
     "rollup-plugin-typescript2": "^0.36.0",
     "tslib": "^2.6.2",
     "typescript": "^5.4.5"
-  },
-  "dependencies": {
-    "vue": "^3.4.27"
   }
 }
