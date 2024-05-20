@@ -10,6 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "czh-node-liv": "^1.0.2"
+    "czh-node-liv": "^1.0.5"
   }
 }

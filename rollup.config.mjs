@@ -4,15 +4,19 @@ import path from 'node:path'
 import {defineConfig} from 'rollup'
 import fs from 'node:fs'
 import json from '@rollup/plugin-json';
+import { globSync } from 'glob';
+
+
 export default defineConfig({
 	input:'src/index.ts',
 	output: {
 		format:'cjs',
-		dir:'dist'
+		dir:'dist',
+		manualChunks: (id) => {
+			console.log(id);
+		}
 	},
-	plugins:[json(),typescript({
-		// tsconfig:'tsconfig.json'
-	}),
+	plugins:[json(),typescript()
 	]
 })
 
