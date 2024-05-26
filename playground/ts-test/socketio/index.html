@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>Hello wrold</div>
+    <div id="ipt" style="height: 300px;width:300px; background-color: antiquewhite;" contenteditable></div>
+    <button id="btn">send</button>
+    <script type="module">
+        import { io } from './socket.io.esm.min.js'
+        const ipt = document.querySelector('#ipt')
+        const btn = document.querySelector('#btn')
+        const socket = io('ws://localhost:3000',
+            {
+                auth: {
+                    token: "123"
+                },
+                query: {
+                    "my-key": "my-value"
+                }
+            }
+        )
+        socket.on('connect', () => {
+            console.log('connected');
+            socket.on('roommsg',data => {
+                console.log(data);
+            })
+            socket.on('data', data => {
+                console.log(data);
+            })
+        })
+
+        btn.addEventListener('click', (e) => {
+            socket.emit('data', ipt.innerText)
+            ipt.innerText = ''
+        })
+    </script>
+</body>
+
+</html>
