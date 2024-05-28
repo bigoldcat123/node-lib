@@ -1,3 +1,6 @@
+/**
+ * 1. eval函数中是在 浏览器中执行的
+ */
 import puppeteer, { ElementHandle } from "puppeteer";
 
 async function main() {
@@ -8,20 +11,17 @@ async function main() {
 
     await page.goto('https://www.bilibili.com')
 
-    //屏幕滚动
-    await page.evaluate(() => {
-        window.scrollTo(0, 1000)
-    })
-    let res = []
-       
-    setInterval(async () => {
-        // eval函数 是在浏览器端执行的 ！！ 可以在浏览器端执行js然后将结果返回。
-        const x = await page.$$eval('.bili-video-card__info--tit', (els) => {
-            return els.map(el => el.getAttribute('title'))
-        })
+    const btn = await page.$('.header-login-entry')
+    await btn?.click()
 
-        console.log(x);
-    }, 1000)
+    setTimeout(async () => {
+        const ipt = await page.$$('.tab__form input')
+        console.log(ipt);
+        await ipt[0].type('account')
+        await ipt[1].type('password')
+    }, 1000);
+
+    
 }
 
 main()
