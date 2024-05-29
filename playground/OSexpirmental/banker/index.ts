@@ -32,6 +32,36 @@ const processes: Porcess[] = [{
 }
 ]
 const availableRes: number[] = [1, 0, 2]
+
+
+
+const processes_single: Porcess[] = [{
+    name: 'p1',
+    allocated: [2],
+    needed: [1],
+    isfinished: false
+},
+{
+    name: 'p2',
+    allocated: [1],
+    needed: [3],
+    isfinished: false
+},
+{
+    name: 'p3',
+    allocated: [1],
+    needed: [3],
+    isfinished: false
+},
+{
+    name: 'p4',
+    allocated: [1],
+    needed: [2],
+    isfinished: false
+}
+]
+const availableRes_single: number[] = [3]
+
 function isAllowed(request: number[], needed: number[]): boolean {
     for (let i = 0; i < request.length; i++) {
         if (request[i] > needed[i]) {
@@ -74,6 +104,7 @@ function allIsFinished (p:Porcess[]) {
     return true
 }
 function banker(p: Porcess[], a: number[]) {
+    console.log(p);
     while (true) {
         let isSafe = false
         for (let i = 0; i < p.length; i++) {
@@ -92,6 +123,7 @@ function banker(p: Porcess[], a: number[]) {
         }
         if(allIsFinished(p)) {
             console.log('safe !');
+            console.log(a);
             break
         }
         if(!isSafe) {
@@ -100,4 +132,5 @@ function banker(p: Porcess[], a: number[]) {
         }
     }
 }
-banker(processes,availableRes)
+
+banker(processes_single,availableRes_single)
