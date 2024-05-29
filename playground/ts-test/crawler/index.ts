@@ -13,7 +13,7 @@ async function main() {
 
     const btn = await page.$('.header-login-entry')
     await btn?.click()
-
+    
     setTimeout(async () => {
         const ipt = await page.$$('.tab__form input')
         console.log(ipt);
