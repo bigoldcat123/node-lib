@@ -1,23 +1,22 @@
 
 import typescript from 'rollup-plugin-typescript2';
 import path from 'node:path'
-import {defineConfig} from 'rollup'
+import { defineConfig } from 'rollup'
 import fs from 'node:fs'
 import json from '@rollup/plugin-json';
 import { globSync } from 'glob';
 
 
 export default defineConfig({
-	input:'src/index.ts',
+	input: 'src/index.ts',
 	output: {
-		format:'cjs',
-		dir:'dist',
+		format: 'cjs',
+		dir: 'dist',
 		manualChunks: (id) => {
 			console.log(id);
 		}
 	},
-	plugins:[json(),typescript()
-	]
+	plugins: [json(), typescript()]
 })
 
 // function json(options) {
@@ -54,41 +53,41 @@ export default defineConfig({
 //   };
 // }
 
-function tsjson () {
+function tsjson() {
 	return {
 		transform: {
-			order:'pre',
-			handler:(code, id) => {
-				
+			order: 'pre',
+			handler: (code, id) => {
+
 				console.log(path.dirname(id));
 				const r = code.match(/ *import\s+(\w+)\s+from\s+['"]+([\w\./]+.json)['"]+[;]*/g)
-				if(r){
+				if (r) {
 					r.forEach(v => {
 						const reg = / *import\s+(\w+)\s+from\s+['"]+([\w\./]+.json)['"]+[;]*/g
 						const rr = reg.exec(v)
-						const jsonFilePath = path.resolve(path.dirname(id),rr[2])
+						const jsonFilePath = path.resolve(path.dirname(id), rr[2])
 						const fvalue = fs.readFileSync(jsonFilePath)
 						const rep = `const ${rr[1]} = ${fvalue.toString()}`
-						code = code.replace(v,rep)
+						code = code.replace(v, rep)
 					})
 				}
 				const another = code.match(/ *import\s+{+ *(.+) *}+\s+from\s+['"]+([\w\./]+.json)['"]+[;]*/g);
-				if(another) {
+				if (another) {
 					another.forEach(v => {
 						const pathReg = / *import\s+{+ *(.+) *}+\s+from\s+['"]+([\w\./]+.json)['"]+[;]*/g
-						const reg =  /{+ *(.+) *}+/gm
+						const reg = /{+ *(.+) *}+/gm
 						const rr = pathReg.exec(v)
 						console.log(rr);
-						const jsonFilePath = path.resolve(path.dirname(id),rr[2])
+						const jsonFilePath = path.resolve(path.dirname(id), rr[2])
 						const fvalue = fs.readFileSync(jsonFilePath)
 						const jsonObj = JSON.parse(fvalue.toString())
-						let req =''
+						let req = ''
 						rr[1].split(',').forEach(v => {
 							req += `const ${v.trim()} = '${jsonObj[v.trim()]}'\n`
 						})
 						console.log(req);
 						const rep = `const {${rr[1]}} = ${fvalue.toString()}`
-						code = code.replace(v,req)
+						code = code.replace(v, req)
 					})
 				}
 				return {
