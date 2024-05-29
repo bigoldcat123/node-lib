@@ -1,4 +1,4 @@
-import { promises } from "dns"
+
 
 type Porcess = {
     name: string,
@@ -105,6 +105,8 @@ function allIsFinished (p:Porcess[]) {
 }
 function banker(p: Porcess[], a: number[]) {
     console.log(p);
+    console.log('available',a);
+    
     while (true) {
         let isSafe = false
         for (let i = 0; i < p.length; i++) {
@@ -132,5 +134,9 @@ function banker(p: Porcess[], a: number[]) {
         }
     }
 }
+console.log('----------------单资源--------------');
 
 banker(processes_single,availableRes_single)
+
+console.log('----------------多资源--------------');
+banker(processes,availableRes)
