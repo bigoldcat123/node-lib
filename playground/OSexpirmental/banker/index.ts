@@ -103,6 +103,7 @@ function allIsFinished (p:Porcess[]) {
     }
     return true
 }
+//
 function banker(p: Porcess[], a: number[]) {
     console.log(p);
     console.log('available',a);
