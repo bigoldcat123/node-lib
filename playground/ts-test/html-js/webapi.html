@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="language"></div>
+    <script>
+        //监听屏幕大小改变
+        window.onresize = function () {
+            console.log('屏幕大小改变了',window.innerHeight,window.innerWidth);
+        }
+        console.log(window.navigator.language);
+        const language = document.querySelector('#language')
+        language.innerHTML = window.navigator.language
+        const p = document.createElement('p')
+        p.textContent = "We hope you enjoyed the ride."
+        language.appendChild(p)
+        const test = document.createTextNode(' — the premier source for web development knowledge.')
+        language.appendChild(test)
+
+        console.log(document.styleSheets);
+
+        p.style.color = "white";
+        p.style.backgroundColor = "black";
+        p.style.padding = "10px";
+        p.style.width = "250px";
+        p.style.textAlign = "center";
+
+    </script>
+    <style>
+        html {
+            background-color: antiquewhite;
+        }
+    </style>
+</body>
+
+</html>

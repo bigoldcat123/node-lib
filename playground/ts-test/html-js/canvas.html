@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>canvas</title>
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="canvas"></canvas>
+    <script>
+        const canvas = document.querySelector('#canvas')
+        canvas.width = window.innerWidth
+        canvas.height = window.innerHeight
+        const ctx = canvas.getContext('2d')
+        // ctx.fillStyle = 'red'
+        // ctx.fillRect(0, 0, 100, 100)
+        // ctx.fillStyle = "rgb(25, 10, 110,0.2)";
+        // ctx.fillRect(50, 50, 100, 150);
+        // ctx.strokeStyle = 'rgb(100,200,22)'
+        // ctx.lineWidth = 10
+        // ctx.strokeRect(120, 100, 100, 100)
+
+        // ctx.beginPath()
+        // ctx.moveTo(60, 60)
+        // ctx.lineTo(100, 100)
+        // ctx.lineTo(60, 100)
+        // ctx.closePath()
+        // ctx.stroke()
+
+        // ctx.beginPath()
+        // ctx.moveTo(180,180)
+        // ctx.lineTo(80,400)
+        // ctx.stroke()
+        function degToRad(degrees) {
+            return (degrees * Math.PI) / 180;
+        }
+        ctx.fillStyle = 'rgb(0, 0, 255)';
+        ctx.beginPath();
+        ctx.arc(150, 106, 50, degToRad(0), degToRad(360), false);
+        ctx.fill();
+        let x = 1;
+
+        x += 10
+        ctx.fillStyle = 'yellow';
+        ctx.beginPath();
+        ctx.arc(200, 106, 50, degToRad(0), degToRad(x % 360), true);
+        ctx.lineTo(200, 106);
+        ctx.fill()
+        console.log(x % 360);
+
+
+        ctx.strokeStyle = "blue";
+        ctx.lineWidth = 1;
+        ctx.font = "36px arial";
+        ctx.strokeText("Canvas text", 50, 50);
+
+        ctx.fillStyle = "red";
+        ctx.font = "48px georgia";
+        ctx.fillText("Canvas text", 50, 150);
+        const image = document.createElement('img')
+        image.src = './img.png'
+        // image.onload = (() => {
+        //     console.log('hi');
+        //     //           图片        
+        //     ctx.drawImage(image,
+        //         300, 150, //裁切x轴坐标 裁切y轴坐标
+        //         185, 175,// 裁切宽度  裁切高度 裁剪的大小
+        //         250, 50, //画布x轴坐标  画布y轴坐标
+        //         185, 175);//画布宽度  画布高度 实际画出的大小
+        // })
+
+
+        function rand(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        var length = 255;
+        var moveOffset = 20;
+        ctx.translate(600 , 800 );
+        for(let i = 0;i < length;i++) {
+            ctx.strokeStyle = `rgba(${i},100,${i})`;
+            // ctx.fillStyle = "red";
+            ctx.beginPath();
+            ctx.moveTo(180,180)
+            ctx.lineTo(80+i*moveOffset,400)
+            ctx.stroke()
+            ctx.rotate(degToRad(5))
+        }
+    </script>
+</body>
+
+</html>
