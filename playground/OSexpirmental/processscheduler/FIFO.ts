@@ -36,8 +36,8 @@ let ReadyQueue: Process_SCHEDULER[] = []
 const init_FIFO = () => {
     ReadyQueue = PList.sort((a, b) => a.createTime - b.createTime)
 }
-const f = 0
-const f_weight = 0
+let f = 0
+let f_weight = 0
 const pLen = PList.length
 const run_FIFO = () => {
     init_FIFO()
@@ -48,6 +48,8 @@ const run_FIFO = () => {
         job.finishTime = currentTime
         job.turnaroundTime = currentTime - job.createTime
         job.weightTurnaroundTime = job.turnaroundTime / job.runTime
+        f += job.turnaroundTime
+        f_weight += job.weightTurnaroundTime
         console.log(job);
     }
     console.log('平均周转时间' + f / pLen + '\n平均带权周转时间' + f_weight / pLen);
