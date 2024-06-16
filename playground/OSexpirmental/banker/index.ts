@@ -42,12 +42,6 @@ const processes_single: Porcess[] = [{
     isfinished: false
 },
 {
-    name: 'p2',
-    allocated: [1],
-    needed: [3],
-    isfinished: false
-},
-{
     name: 'p3',
     allocated: [1],
     needed: [3],
@@ -57,6 +51,12 @@ const processes_single: Porcess[] = [{
     name: 'p4',
     allocated: [1],
     needed: [2],
+    isfinished: false
+},
+{
+    name: 'p2',
+    allocated: [1],
+    needed: [3],
     isfinished: false
 }
 ]
