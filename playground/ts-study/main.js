@@ -1,6 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.s = void 0;
 const x = { name: 'John', age: 30 };
 const y = { name: 'John', age: 30 };
 function fun(arg = 10, arg2 = 20) {
@@ -60,5 +57,5 @@ const xasd = {
 };
 console.log(xasd);
 func(1, "c");
-exports.s = y;
-exports.default = { x, y };
+export const s = y;
+export default { x, y };
