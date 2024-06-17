@@ -23,11 +23,12 @@ const ss = {
         for (let index = 0; index < 10; index++) {
             yield index
         }
-    }
+    },
+    name:'string'
 }
 console.log(typeof []);
 
-console.log(ss);
+console.log(ss['name']);
 
 function name(params:string|number):params is string {
     return typeof params === 'string'
@@ -40,11 +41,13 @@ type callAble = {
 function ccc(params:callAble):void {
     params('a')
 }
-const xxxx = (name:string):number => {
+const xxxx = (  name: string,s: readonly any[]):number => {
+    console.log(name);
+    s
     return 1
 }
 xxxx.value = 'a'
-ccc(xxxx)
+
 function X<Type extends {length:number}> (ipt:Type):Type | any {
     if(ipt.length > 20){
         return ipt
@@ -66,5 +69,22 @@ function filter1<Type>(arr: Type[], func: (arg: Type) => boolean): Type[] {
   filter2([1,1],(item) => {
     return item > 2
   })
+
+function func(arg:number):void  
+function func(xoyn:number,x:string,):void  
+function func(arg:number,x?:string) {
+
+}
+const ssds= '2'
+type xxcc = {
+    [ssds:string]:string
+}
+const xasd:xxcc = {
+    true:'2',
+    '1':'a'
+}
+console.log(xasd);
+
+func(1,"c")
 export const s = y
 export default {x,y}
