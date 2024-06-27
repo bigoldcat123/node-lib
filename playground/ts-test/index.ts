@@ -45,6 +45,19 @@
 // const x = crypto.privateDecrypt(r.privateKey, rr)
 // console.log(x.toString());
 
+import { list } from '@vercel/blob';
+import x from 'dotenv'
+x.config()
 
-
-
+console.log(process.env);
+async function name() {
+    const {blobs} = await list({
+        limit: 2
+      });
+      const { url } = blobs[0];
+      console.log(url);
+      const { url: captionsUrl } = blobs[1];
+      console.log( captionsUrl);
+      
+}
+name()
