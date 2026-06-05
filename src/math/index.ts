@@ -1,5 +1,5 @@
-function add (x:number,y:number) {
-    return x + y;
+export function add(x: number, y: number): number {
+  return x + y;
 }
 
-export default add
+export default add;

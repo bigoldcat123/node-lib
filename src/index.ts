@@ -1,16 +1,18 @@
-import add from "./math/index";
-import j from '../package.json'
-import ja from '../package.json'
-import {name,version} from '../package.json'
-import stu from './enrollment/index'
-const realAdd = () => {
-    console.log(add(1,2));
-    console.log(j);
-    console.log(name,version);   
-}
-realAdd()
+import { add } from './math';
+import { getStudent } from './enrollment';
 
-const whoAmiI = ()=> {
-    return stu()
+export { add, getStudent };
+
+export function createDemoSummary() {
+  const student = getStudent();
+  return {
+    sum: add(1, 2),
+    studentName: student.name,
+  };
 }
-export default {realAdd,add,whoAmiI} 
+
+export default {
+  add,
+  getStudent,
+  createDemoSummary,
+};
